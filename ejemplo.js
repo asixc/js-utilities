@@ -1,18 +1,22 @@
 import { chromium } from "playwright"
 
-const browser = await chromium.launch({ headless:false })
+// Usamos headless para que no se abra el navegador
+const browser = await chromium.launch({ headless:true })
 
+// Creamos una nueva página
 const page = await browser.newPage()
-console.log('adasdf')
+
+// Vamos a la página que nos interesa
 await page.goto('https://github.com/trending/javascript')
 
-const carteleraSpain = await page.$$eval('.Box-row', (movies) => {
-    movies.map((film) => {
-        const title = film.querySelector('h2').innerText.trim();
-        console.log(title)
-        return { title }
+// Obtenemos todos los elementos dentro de la clase .Box-row
+const repositorios = await page.$$eval('.Box-row', (rows) => {
+    rows.map((row) => {
+        const title = row.querySelector('h2').innerText.trim()
+        const link = row.querySelector('h2 a').getAttribute('href')
+        return { title , link }
     })
 })
 
-console.log('será undefined aquí:', carteleraSpain)
-//await browser.close();
+console.log('¿Porqué es undefined?:', repositorios)
+await browser.close();

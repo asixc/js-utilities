@@ -1,0 +1,16 @@
+{
+  "name": "web-scrapping",
+  "version": "1.0.0",
+  "description": "Utilities JS is a group of scripts oriented towards testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.35.1"
+  }
+}
